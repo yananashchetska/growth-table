@@ -145,8 +145,8 @@ container.addEventListener('click', function (ev) {
   if (ev.target === removeColBtn) {
     removeColumns(table);
   }
-  checkDisabledRows();
-  checkDisabledColumns();
+  checkDisabled(table.rows.length, appendRowBtn, removeRowBtn);
+  checkDisabled(table.rows[0].cells.length, appendColBtn, removeColBtn);
 });
 function appendRows(table) {
   var rowsCount = table.rows.length;
@@ -187,34 +187,19 @@ function removeColumns(table) {
     row.deleteCell(cellIndexToDelete);
   });
 }
-function checkDisabledRows() {
-  if (table.rows.length === 2) {
-    removeRowBtn.disabled = true;
-    appendRowBtn.disabled = false;
+function checkDisabled(length, button, pairButton) {
+  if (length === 2) {
+    pairButton.disabled = true;
+    button.disabled = false;
   }
-  if (table.rows.length > 2) {
-    removeRowBtn.disabled = false;
+  if (length > 2) {
+    pairButton.disabled = false;
   }
-  if (table.rows.length === 10) {
-    appendRowBtn.disabled = true;
+  if (length === 10) {
+    button.disabled = true;
   }
-  if (table.rows.length < 10) {
-    appendRowBtn.disabled = false;
-  }
-}
-function checkDisabledColumns() {
-  if (table.rows[0].cells.length === 2) {
-    removeColBtn.disabled = true;
-    appendColBtn.disabled = false;
-  }
-  if (table.rows[0].cells.length > 2) {
-    removeColBtn.disabled = false;
-  }
-  if (table.rows[0].cells.length === 10) {
-    appendColBtn.disabled = true;
-  }
-  if (table.rows[0].cells.length < 10) {
-    appendColBtn.disabled = false;
+  if (length < 10) {
+    button.disabled = false;
   }
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -242,7 +227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65533" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49457" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

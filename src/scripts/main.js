@@ -26,8 +26,8 @@ container.addEventListener('click', ev => {
         removeColumns(table);
     }
 
-    checkDisabledRows();
-    checkDisabledColumns();
+    checkDisabled(table.rows.length, appendRowBtn, removeRowBtn);
+    checkDisabled(table.rows[0].cells.length, appendColBtn, removeColBtn);
 })
 
 function appendRows(table) {
@@ -83,40 +83,21 @@ function removeColumns(table) {
     })
 }
 
-function checkDisabledRows() {
-    if (table.rows.length === 2) {
-        removeRowBtn.disabled = true;
-        appendRowBtn.disabled = false;
+function checkDisabled(length, button, pairButton) {
+    if (length === 2) {
+        pairButton.disabled = true;
+        button.disabled = false;
     }
 
-    if (table.rows.length > 2) {
-        removeRowBtn.disabled = false;
+    if (length > 2) {
+        pairButton.disabled = false;
     }
 
-    if (table.rows.length === 10) {
-        appendRowBtn.disabled = true;
+    if (length === 10) {
+        button.disabled = true;
     }
 
-    if (table.rows.length < 10) {
-        appendRowBtn.disabled = false;
-    }
-}
-
-function checkDisabledColumns() {
-    if (table.rows[0].cells.length === 2) {
-        removeColBtn.disabled = true;
-        appendColBtn.disabled = false;
-    }
-
-    if (table.rows[0].cells.length > 2) {
-        removeColBtn.disabled = false;
-    }
-
-    if (table.rows[0].cells.length === 10) {
-        appendColBtn.disabled = true;
-    }
-
-    if (table.rows[0].cells.length < 10) {
-        appendColBtn.disabled = false;
+    if (length < 10) {
+        button.disabled = false;
     }
 }
